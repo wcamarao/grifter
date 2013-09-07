@@ -1,4 +1,6 @@
 Grifter::Application.routes.draw do
+  resources :trades
+
   resources :items
 
   resources :users
