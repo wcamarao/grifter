@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :email
-      t.bigint :fbuid
+      t.integer :fbuid, :limit => 8
       t.decimal :latitude
       t.decimal :longitude
 
