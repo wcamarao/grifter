@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130908000618) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "location"
     t.integer  "fbuid",            limit: 8
     t.decimal  "latitude",                   precision: 10, scale: 0
     t.decimal  "longitude",                  precision: 10, scale: 0
