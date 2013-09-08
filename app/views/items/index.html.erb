@@ -28,7 +28,9 @@
 
 <br>
 
-<%= form_for(@item) do |f| %>
-  <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
-  <%= f.hidden_field :user_id, :value => (current_user.id || nil) %>
+<% if current_user.present? %>
+  <%= form_for(@item) do |f| %>
+    <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% end %>
 <% end %>
