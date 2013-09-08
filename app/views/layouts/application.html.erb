@@ -7,13 +7,18 @@
   <link href='http://fonts.googleapis.com/css?family=Denk+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" type="text/javascript"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
   <style>
     #nb a { color: white }
+    #nb a:hover { background-color: #0D6759 }
+    .btn.btn-primary { background-color: #A0C55F; border-color: #0D6759; }
+    .btn.btn-primary:hover { background-color: #0D6759 }
+    .btn.btn-primary.item-value { background-color: #0D6759; cursor: text }
+    .btn.btn-primary.item-value:hover { background-color: #0D6759; cursor: text }
   </style>
 </head>
 <body>
@@ -31,7 +36,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/items">Browse Items</a></li>
-            <li><a href="/items/new">Publish an Item</a></li>
+            <% if current_user.present? %>
+              <li><a href="#" id="pub_item">Publish an Item</a></li>
+            <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
@@ -57,6 +64,11 @@
 
     <script>
     $(document).ready(function(){
+      $('#pub_item').click(function(event){
+        event.preventDefault();
+        $('#item_picture').click()
+      })
+
       $('#sign_in').click(function(event){
         event.preventDefault();
         navigator.geolocation.getCurrentPosition(function(pos) {
