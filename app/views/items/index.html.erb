@@ -3,12 +3,17 @@
     <div class="row">
   <% end %>
     <div class="col-lg-3" style="">
-      <h2><%= item.name%> <%== '&nbsp;' %></h2>
+      <center>
+        <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><%= item.name%> <%== '&nbsp;' %></h2>
+      <center>
       <div style="border: 1px solid #0D6759; border-radius: 3px; padding: 10px">
         <center>
-          <p><img src="<%=item.picture%>" style="border-radius: 3px; max-width: 100%"></p>
-          <a style="color: white" class="btn btn-primary" href="/items/<%=item.id%>">View details &raquo;</a>
+          <img src="<%=item.picture%>" style="border-radius: 3px; max-width: 100%">
         </center>
+      </div>
+      <div style="margin-top: 10px">
+        <a style="color: white" class="btn btn-primary item-value pull-left" href="">$<%= item.value %></a>
+        <a style="color: white" class="btn btn-primary pull-right" href="/items/<%=item.id%>">View details &raquo;</a>
       </div>
     </div>
   <%if (i+1) % 4 == 0 || i == @items.size-1%>
