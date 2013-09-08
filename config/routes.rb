@@ -4,11 +4,12 @@ Grifter::Application.routes.draw do
   resources :users
 
   root 'items#index'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
