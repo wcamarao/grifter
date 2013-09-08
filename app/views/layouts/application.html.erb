@@ -4,12 +4,15 @@
   <title>Grifter</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <link href='http://fonts.googleapis.com/css?family=Denk+One' rel='stylesheet' type='text/css'>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" type="text/javascript"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" type="text/javascript"></script>
   <%= csrf_meta_tags %>
   <style>
     #nb a { color: white }
+    #nb a:hover { background-color: #0D6759 }
+    .btn.btn-primary { background-color: #A0C55F; border-color: #0D6759; }
+    .btn.btn-primary:hover { background-color: #0D6759 }
   </style>
 </head>
 <body>
@@ -27,7 +30,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/items">Browse Items</a></li>
-            <li><a href="/items/new">Publish an Item</a></li>
+            <% if current_user.present? %>
+              <li><a href="#" id="pub_item">Publish an Item</a></li>
+            <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
@@ -53,6 +58,11 @@
 
     <script>
     $(document).ready(function(){
+      $('#pub_item').click(function(event){
+        event.preventDefault();
+        $('#item_picture').click()
+      })
+
       $('#sign_in').click(function(event){
         event.preventDefault();
         navigator.geolocation.getCurrentPosition(function(pos) {
