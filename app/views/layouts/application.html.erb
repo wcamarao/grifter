@@ -43,7 +43,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <li>
-                <a><%= current_user.name.split(' ').first %></a>
+                <a style="pointer-events: none"><%= current_user.name.split(' ').first %></a>
               </li>
               <li>
                 <%= link_to "Sign out", signout_path, id: "sign_out" %>
