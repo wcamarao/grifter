@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :location
       t.integer :fbuid, :limit => 8
-      t.decimal :latitude, :precision => 15, :scale => 12
-      t.decimal :longitude, :precision => 15, :scale => 12
+      t.decimal :latitude, :precision => 20, :scale => 17
+      t.decimal :longitude, :precision => 20, :scale => 17
 
       t.timestamps
     end

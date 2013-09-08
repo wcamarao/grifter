@@ -6,7 +6,6 @@
       <th>Name</th>
       <th>Picture</th>
       <th>Value</th>
-      <th>User</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,7 +18,6 @@
         <td><%= item.name %></td>
         <td><%= item.picture %></td>
         <td><%= item.value %></td>
-        <td><%= item.user_id %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,4 +30,5 @@
 
 <%= form_for(@item) do |f| %>
   <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
+  <%= f.hidden_field :user_id, :value => (current_user.id || nil) %>
 <% end %>

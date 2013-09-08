@@ -2,7 +2,9 @@ require 'flickraw'
 
 class Item < ActiveRecord::Base
   belongs_to :user
-  before_save :upload_picture
+  before_create :upload_picture
+
+  validates_presence_of :name
 
   def upload_picture
     id = flickr.upload_photo picture.path, :title => picture.original_filename

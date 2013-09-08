@@ -3,7 +3,13 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.new
-    @items = Item.all
+    @items = []
+    if current_user
+      for user in current_user.nearbys(5) do
+        @items |= user.items
+      end
+      @items = current_user.items if @items.empty?
+    end
   end
 
   def show
@@ -17,6 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    puts "item params: #{item_params}"
     @item = Item.new(item_params)
 
     respond_to do |format|
