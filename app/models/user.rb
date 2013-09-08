@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-  reverse_geocoded_by :latitude, :longitude
+  reverse_geocoded_by :latitude, :longitude, :address => :location
   after_validation :reverse_geocode
   has_many :items
   has_many :trades
 
   def self.from_omniauth(auth)
-    puts "auth: #{auth}"
     where(auth.slice(:provider, :fbuid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.fbuid = auth.uid

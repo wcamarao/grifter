@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20130908000618) do
     t.string   "email"
     t.string   "location"
     t.integer  "fbuid",            limit: 8
-    t.decimal  "latitude",                   precision: 10, scale: 0
-    t.decimal  "longitude",                  precision: 10, scale: 0
+    t.decimal  "latitude",                   precision: 15, scale: 12
+    t.decimal  "longitude",                  precision: 15, scale: 12
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"

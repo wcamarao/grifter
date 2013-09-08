@@ -4,7 +4,7 @@ Grifter::Application.routes.draw do
   resources :users
 
   root 'items#index'
-  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback' => 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
@@ -45,7 +45,7 @@ Grifter::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

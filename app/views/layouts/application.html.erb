@@ -20,5 +20,15 @@
 
 <%= yield %>
 
+    <script>
+    $(document).ready(function(){
+      $('#sign_in').click(function(event){
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          window.location.href = '/auth/facebook?state=' + pos.coords.latitude + ',' + pos.coords.longitude;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
