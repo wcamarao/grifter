@@ -30,4 +30,6 @@
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+<%= form_for(@item) do |f| %>
+  <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
+<% end %>
