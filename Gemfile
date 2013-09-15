@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'activerecord-postgis-adapter', '~> 0.6.5'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 1.2'
 gem 'pg', '~> 0.16.0'
