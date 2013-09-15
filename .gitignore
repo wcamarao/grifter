@@ -2,4 +2,3 @@
 /.bundle
 /log/*.log
 /tmp
-/config/initializers/flickr.rb
