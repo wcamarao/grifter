@@ -8,6 +8,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '~> 2.2.1'
 gem 'unicorn', '~> 4.6.3'
 gem 'unicorn-rails', '~> 1.1.0'
+gem 'zurb-foundation', '~> 4.3.1'
 
 group :development, :test do
   gem 'debugger'
