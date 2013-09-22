@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 
+//= require lib/jquery/jquery
+//= require lib/underscore/underscore
 //= require foundation
 
 //= require_tree .
