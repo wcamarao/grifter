@@ -5,34 +5,49 @@ In person trading app
 
 ## Dependencies
 
+#### Runtime
+
   * Ruby 2.0.0
+  * Rails 4.0.0
+  * PostgreSQL 9.2.4
+  * PostGIS 2.1.0
+
+#### Development
+
   * NodeJS 0.10.12
-  * PostgreSQL 9.1.5 (recommended download from http://postgresapp.com)
+  * Homebrew 0.9.4
 
-## Configuration
+#### Installation
 
-  * /config/database.yml
-
-## Installation
-
-    $ npm install -g bower
-    $ bundle install
-    $ bower install
+    * brew install postgresql
+    * brew install postgis
+    * npm install -g bower
+    * bundle install
+    * bower install
 
 ## Development
 
-    $ rake db:create
-    $ rake db:migrate
-    $ rake db:gis:setup
+#### Configuration
 
-## Testing
+  * /config/database.yml
 
-    $ guard
-    $ rake
-    $ rspec
+#### Setup
 
-## Deployment
+    * rake db:create
+    * rake db:gis:setup
+    * rake db:migrate
 
-    $ psql -h localhost
+#### Testing
+
+    * guard
+    * rake
+    * rspec
+
+## Deploy
+
+    * psql -h localhost
+
+Then
+
     > CREATE EXTENSION postgis;
     > SELECT POSTGIS_VERSION();
