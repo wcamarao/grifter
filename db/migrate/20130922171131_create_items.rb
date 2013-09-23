@@ -2,11 +2,9 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.string :name
-      t.string :picture
-      t.decimal :value
-      t.integer :user_id
-
-      t.timestamps
+      t.string :location
+      t.point :lonlat, :geographic => true
+      t.index :lonlat, :spatial => true
     end
   end
 end

@@ -1,41 +1,27 @@
-<% @items.each_with_index do |item, i| %>
-  <%if (i+1) % 4 == 1%>
-    <div class="row">
-  <% end %>
-    <div class="col-lg-3" style="">
-      <center>
-        <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><%= item.name%> <%== '&nbsp;' %></h2>
-      <center style="background: white">
-      <div style="border: 1px solid #0D6759; border-radius: 3px; padding: 10px">
-        <center>
-          <img src="<%=item.picture%>" style="border-radius: 3px; max-width: 100%">
-        </center>
-      </div>
-      <div style="margin-top: 10px">
-        <a style="color: white" class="btn btn-primary item-value pull-left" href="">$<%= item.value %></a>
-        <a style="color: white" class="btn btn-primary pull-right" href="/items/<%=item.id%>">View details &raquo;</a>
-      </div>
-    </div>
-  <%if (i+1) % 4 == 0 || i == @items.size-1%>
-    </div>
-  <% end %>
-<% end %>
+<h1>Listing items</h1>
 
-<!--
-<td>< = link_to 'Show', item %></td>
-<td>< = link_to 'Edit', edit_item_path(item) %></td>
-<td>< = link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
--->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<% if current_user.present? %>
-  <div class="row" style="visibility: hidden">
-    <div class="col-lg-12">
-      <center>
-        <%= form_for(@item) do |f| %>
-          <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-        <% end %>
-      </center>
-    </div>
-  </div>
-<% end %>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>

@@ -11,37 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908000618) do
+ActiveRecord::Schema.define(version: 20130922171131) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "items", force: true do |t|
-    t.string   "name"
-    t.string   "picture"
-    t.decimal  "value",      precision: 10, scale: 0
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.string  "location"
+    t.spatial "lonlat",   limit: {:srid=>4326, :type=>"point", :geographic=>true}
   end
 
-  create_table "trades", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "item_id"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "location"
-    t.integer  "fbuid",            limit: 8
-    t.decimal  "latitude",                   precision: 20, scale: 17
-    t.decimal  "longitude",                  precision: 20, scale: 17
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
-  end
+  add_index "items", ["lonlat"], :name => "index_items_on_lonlat", :spatial => true
 
 end

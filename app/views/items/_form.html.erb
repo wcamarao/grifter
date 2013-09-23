@@ -15,48 +15,7 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-
-  <div class="field">
-    <p>
-      <strong>Picture:</strong>
-      <%= image_tag(@item.picture, :alt => 'item image') %>
-    </p>
-    <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
-  </div>
-
-<p>
-  <label for="amount">Value:</label>
-  <input type="text" id="amount" style="border: 0; color: #A0C55F; font-weight: bold;" />
-</p>
- 
-<div id="slider-range"></div>
-    
-  <div class="field">
-    <%#= f.label :value %>
-    <%= f.hidden_field :value %>
-  </div>
-<!--   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div> -->
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-<script>
-  $(function() {
-    $( "#slider-range" ).slider({
-      range: false,
-      min: 0,
-      max: 500,
-      values: [$('#item_value').val()],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] );
-        $('#item_value').val(ui.values[ 0 ]);
-      }
-    });
-    $( "#amount" ).val( "$" + $('#item_value').val() );
-    $('#item_value').val( $( "#slider-range" ).slider( "values", 0 ));
-  });
-</script>

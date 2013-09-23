@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Grifter::Application.config.secret_key_base = '6a5ac38e3ee55338436e50877451159f35a017c14dc75cdcc66e4c4ddce3f19d8b798f2e5a2090c6e26b493dc96ab14c11fef6661c87138bd80bda3d04293b2f'
+Grifter::Application.config.secret_key_base = '20b200938a48457c0b7194400775315438028ec989610a30f22e68dc24b256e4aef3e37903254a40bcbef140593d1115b1020f218a948d3b3d188d62ef156031'

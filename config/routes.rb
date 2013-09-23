@@ -1,12 +1,8 @@
 Grifter::Application.routes.draw do
-  resources :trades
-  resources :items
-  resources :users
 
   root 'items#index'
-  get 'auth/:provider/callback' => 'sessions#create'
-  get 'auth/failure', to: redirect('/')
-  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  resources :items
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -45,7 +41,7 @@ Grifter::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-
+  
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
