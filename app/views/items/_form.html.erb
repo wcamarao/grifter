@@ -1,21 +1,31 @@
 <%= form_for(@item) do |f| %>
   <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
+    <ul id="errors">
       <% @item.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.text_field :name, :placeholder => 'Name' %>
+
+      <%= f.file_field :picture %>
+      <input id="item_picture_placeholder" placeholder="Choose File"
+             type="text" readonly="readonly" value="<%= @item.picture %>">
+
+      <%= f.text_field :value, :placeholder => 'Value (USD)' %>
+      <%= f.text_area :description, :placeholder => 'Description...' %>
+
+      <div class="actions">
+        <%= f.submit @item.new_record? ? 'Add Item' : 'Update Item' %>
+      </div>
+    </div>
+
+    <div class="large-6 columns">
+      <img id="item_picture_preview" src="<%= @item.picture %>">
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

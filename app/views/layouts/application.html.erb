@@ -9,15 +9,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>grifter.io</title>
+    <title>grifter</title>
 
+    <link href='//fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css' />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css" />
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="fixed">
+      <div class="contain-to-grid">
+        <nav class="top-bar">
+          <ul class="title-area">
+            <li class="name"><h1><a href="/">grifter</a></h1></li>
+            <li class="toggle-topbar menu-icon"><a href="javascript:void(0);"><span>MENU</span></a></li>
+          </ul>
+
+          <section class="top-bar-section">
+            <ul class="left">
+              <li><a href="/items/new">Add an Item</a></li>
+              <li><a href="/trades">My Trades</a></li>
+              <li class="show-for-small"><a href="/users/1/edit">Account Settings</a></li>
+              <li class="show-for-small"><a href="/session/destroy">Sign out</a></li>
+            </ul>
+
+            <ul class="right">
+              <li class="has-dropdown">
+                <a href="javascript:void(0);" class="hide-for-small">Wagner Camarao</a>
+                <ul class="dropdown">
+                  <li><a href="/users/1/edit">Account Settings</a></li>
+                  <li><a href="/session/destroy">Sign out</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          </section>
+        </nav>
+      </div>
+    </div>
+
+    <div id="content-container" class="row">
+      <div class="large-12 columns">
+        <%= yield %>
+      </div>
+    </div>
+
     <%= javascript_include_tag "application" %>
   </body>
 

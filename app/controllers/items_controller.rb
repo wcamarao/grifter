@@ -17,6 +17,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.picture = @item.picture.try :original_filename
+    @item.user_id = 1
 
     if @item.save
       redirect_to @item, notice: 'Item was successfully created.'
@@ -39,11 +41,12 @@ class ItemsController < ApplicationController
   end
 
   private
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    def item_params
-      params.require(:item).permit(:name)
-    end
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :picture, :location, :value, :description, :longitude, :latitude)
+  end
 end

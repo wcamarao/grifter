@@ -1,5 +1,13 @@
 class Item < ActiveRecord::Base
   MILES_TO_METERS_RATIO = 1609.34
+  before_create :set_default_status
+
+  validates :name, :picture, presence: true
+  validates :value, numericality: { greater_than: 0 }
+
+  def set_default_status
+    self.status = 'Active'
+  end
 
   def self.seed
     create({ location: 'San Francisco', lonlat: 'POINT (-122.420349 37.773592)' })
