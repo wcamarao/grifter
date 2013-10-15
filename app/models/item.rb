@@ -23,11 +23,11 @@ class Item < ActiveRecord::Base
   end
 
   def picture_320
-    parse_picture('z')
+    parse_picture('n')
   end
 
   def picture_640
-    parse_picture('n')
+    parse_picture('z')
   end
 
   def picture_original
@@ -49,13 +49,14 @@ class Item < ActiveRecord::Base
 
   def hashify_picture(flickr_info)
     {
-      z: FlickRaw.url_z(flickr_info),
       n: FlickRaw.url_n(flickr_info),
+      z: FlickRaw.url_z(flickr_info),
       o: FlickRaw.url_o(flickr_info)
     }
   end
 
   def parse_picture(size)
+    return unless self.picture.present?
     JSON.parse(self.picture)[size]
   end
 end

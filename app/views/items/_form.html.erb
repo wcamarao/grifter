@@ -13,17 +13,17 @@
 
       <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
 
-      <input id="item_picture_placeholder" placeholder="Choose File"
-             type="text" readonly="readonly" value="<%= @item.picture %>">
+      <input id="item_picture_placeholder" placeholder="<%=@picture_placeholder%>"
+             type="text" readonly="readonly" value="">
 
       <%= f.text_field :value, :placeholder => 'Value (USD)' %>
       <%= f.text_area :description, :placeholder => 'Description...' %>
 
-      <%= f.submit @item.new_record? ? 'Add Item' : 'Update Item', :id => 'item_submit' %>
+      <%= f.submit @submit_label, :id => 'item_submit' %>
     </div>
 
     <div class="large-6 columns">
-      <img id="item_picture_preview" src="<%= @item.picture %>">
+      <img id="item_picture_preview" src="<%= @item.picture_640 %>">
     </div>
   </div>
 

@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_form, only: [:new, :edit]
 
   def index
-    @items = Item.all
+    @items = Item.find(:all, :order => :created_at)
   end
 
   def show
@@ -43,6 +44,12 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_form
+    is_new = @item.nil? || @item.new_record?
+    @picture_placeholder = is_new ? 'Choose File' : 'Choose Another File'
+    @submit_label = is_new ? 'Add Item' : 'Update Item'
   end
 
   def item_params
