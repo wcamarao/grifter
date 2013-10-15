@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :picture, :null => false
       t.string :status, :null => false
       t.string :location
-      t.string :description
+      t.text :description
 
       t.decimal :value, :null => false
       t.integer :user_id, :null => false

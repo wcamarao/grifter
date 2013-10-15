@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.picture = @item.picture.try :original_filename
     @item.user_id = 1
 
     if @item.save

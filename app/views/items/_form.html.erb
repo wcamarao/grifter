@@ -11,7 +11,8 @@
     <div class="large-6 columns">
       <%= f.text_field :name, :placeholder => 'Name' %>
 
-      <%= f.file_field :picture %>
+      <%= f.file_field :picture, :capture => 'camera', :accept => 'image/*' %>
+
       <input id="item_picture_placeholder" placeholder="Choose File"
              type="text" readonly="readonly" value="<%= @item.picture %>">
 

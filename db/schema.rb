@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20130930013150) do
     t.string   "picture",                                                              null: false
     t.string   "status",                                                               null: false
     t.string   "location"
-    t.string   "description"
+    t.text     "description"
     t.decimal  "value",                                                                null: false
     t.integer  "user_id",                                                              null: false
     t.spatial  "lonlat",      limit: {:srid=>4326, :type=>"point", :geographic=>true}
