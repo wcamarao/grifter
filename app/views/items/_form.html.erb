@@ -19,9 +19,7 @@
       <%= f.text_field :value, :placeholder => 'Value (USD)' %>
       <%= f.text_area :description, :placeholder => 'Description...' %>
 
-      <div class="actions">
-        <%= f.submit @item.new_record? ? 'Add Item' : 'Update Item' %>
-      </div>
+      <%= f.submit @item.new_record? ? 'Add Item' : 'Update Item', :id => 'item_submit' %>
     </div>
 
     <div class="large-6 columns">
