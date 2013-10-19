@@ -4,14 +4,15 @@ class CreateItems < ActiveRecord::Migration
       t.string :name, :null => false
       t.string :picture, :null => false
       t.string :status, :null => false
-      t.string :location
-      t.text :description
+      t.string :location, :null => false
 
       t.decimal :value, :null => false
-      t.integer :user_id, :null => false
+      t.text :description
 
       t.point :lonlat, :geographic => true
       t.index :lonlat, :spatial => true
+
+      t.references :user, :index => true, :null => false
 
       t.timestamps
     end

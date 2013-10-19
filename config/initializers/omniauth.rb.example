@@ -1,0 +1,7 @@
+scope = 'email,read_stream'
+fb_key = ''
+fb_secret = ''
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :facebook, fb_key, fb_secret, :scope => scope
+end

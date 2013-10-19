@@ -21,16 +21,17 @@ ActiveRecord::Schema.define(version: 20130930013150) do
     t.string   "name",                                                                 null: false
     t.string   "picture",                                                              null: false
     t.string   "status",                                                               null: false
-    t.string   "location"
-    t.text     "description"
+    t.string   "location",                                                             null: false
     t.decimal  "value",                                                                null: false
-    t.integer  "user_id",                                                              null: false
+    t.text     "description"
     t.spatial  "lonlat",      limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer  "user_id",                                                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "items", ["lonlat"], :name => "index_items_on_lonlat", :spatial => true
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "trades", force: true do |t|
     t.string   "status",         null: false
@@ -43,15 +44,15 @@ ActiveRecord::Schema.define(version: 20130930013150) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                                                                null: false
-    t.string   "email",                                                               null: false
-    t.string   "status",                                                              null: false
-    t.string   "location"
-    t.spatial  "lonlat",     limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.string   "name",             null: false
+    t.string   "email",            null: false
+    t.boolean  "active",           null: false
+    t.string   "provider",         null: false
+    t.string   "fbuid",            null: false
+    t.string   "oauth_token",      null: false
+    t.datetime "oauth_expires_at", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["lonlat"], :name => "index_users_on_lonlat", :spatial => true
 
 end

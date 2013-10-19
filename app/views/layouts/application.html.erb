@@ -29,20 +29,26 @@
 
           <section class="top-bar-section">
             <ul class="left">
-              <li><a href="/items/new">Add an Item</a></li>
-              <li><a href="/trades">My Trades</a></li>
-              <li class="show-for-small"><a href="/users/1/edit">Account Settings</a></li>
-              <li class="show-for-small"><a href="/session/destroy">Sign out</a></li>
+              <% if current_user %>
+                <li><%= link_to "Add an Item", new_item_path %></li>
+                <li><%= link_to "My Trades", trades_path %></li>
+                <li class="show-for-small"><%= link_to "Account Settings", edit_user_path(current_user) %></li>
+                <li class="show-for-small"><%= link_to "Sign out", signout_path %></li>
+              <% end %>
             </ul>
 
             <ul class="right">
-              <li class="has-dropdown">
-                <a href="javascript:void(0);" class="hide-for-small">Wagner Camarao</a>
-                <ul class="dropdown">
-                  <li><a href="/users/1/edit">Account Settings</a></li>
-                  <li><a href="/session/destroy">Sign out</a></li>
-                </ul>
-              </li>
+              <% if current_user %>
+                <li class="has-dropdown">
+                  <a href="javascript:void(0);" class="hide-for-small"><%= current_user.name %></a>
+                  <ul class="dropdown">
+                    <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
+                    <li><%= link_to "Sign out", signout_path %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <li><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+              <% end %>
             </ul>
 
           </section>
