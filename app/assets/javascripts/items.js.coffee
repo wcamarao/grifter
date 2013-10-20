@@ -15,9 +15,15 @@ parseLocation = (response) ->
       return match && match[0]
 
 $ ->
+  return unless $('#new_item').size() > 0 || $('form.edit_item').size() > 0
+
   itemPicture = $('#item_picture')
   itemPicturePreview = $('#item_picture_preview')
   itemPicturePlaceholder = $('#item_picture_placeholder')
+  itemLocationPreview = $('#item_location_preview')
+  itemLocation = $('#item_location')
+  itemLonlat = $('#item_lonlat')
+  itemSubmit = $('#item_submit')
 
   itemPicturePlaceholder.click -> itemPicture[0].click()
 
@@ -28,10 +34,12 @@ $ ->
     reader.readAsDataURL(@files[0])
     itemPicturePlaceholder.val(@files[0].name)
 
-  itemSubmit = $('#item_submit')
-
   getLocation (coords) ->
     console.log coords
-
     url = "//maps.googleapis.com/maps/api/geocode/json?latlng=#{coords.latitude},#{coords.longitude}&sensor=true"
-    $.get url, (response) -> console.log parseLocation(response)
+    itemLonlat.val "POINT (#{coords.longitude} #{coords.latitude})"
+
+    $.get url, (response) ->
+      location = parseLocation(response)
+      itemLocationPreview.text("Location: #{location}")
+      itemLocation.val(location)

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_form, only: [:new, :edit]
+  before_action :set_form_vars, only: [:new, :edit]
 
   def index
     @items = Item.find(:all, :order => :created_at)
@@ -46,13 +46,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_form
+  def set_form_vars
     is_new = @item.nil? || @item.new_record?
     @picture_placeholder = is_new ? 'Choose File' : 'Choose Another File'
     @submit_label = is_new ? 'Add Item' : 'Update Item'
   end
 
   def item_params
-    params.require(:item).permit(:name, :picture, :location, :value, :description, :longitude, :latitude)
+    params.require(:item).permit(:name, :picture, :location, :value, :description, :lonlat).merge({
+      :user_id => current_user.try(:id)
+    })
   end
 end

@@ -19,6 +19,10 @@
       <%= f.text_field :value, :placeholder => 'Value (USD)' %>
       <%= f.text_area :description, :placeholder => 'Description...' %>
 
+      <%= f.hidden_field :lonlat %>
+      <%= f.hidden_field :location %>
+      <div id="item_location_preview">Retrieving location...</div>
+
       <%= f.submit @submit_label, :id => 'item_submit' %>
     </div>
 

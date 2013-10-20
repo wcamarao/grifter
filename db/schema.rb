@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130930013150) do
     t.string   "location",                                                             null: false
     t.decimal  "value",                                                                null: false
     t.text     "description"
-    t.spatial  "lonlat",      limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.spatial  "lonlat",      limit: {:srid=>4326, :type=>"point", :geographic=>true}, null: false
     t.integer  "user_id",                                                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"

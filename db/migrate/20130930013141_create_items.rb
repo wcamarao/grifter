@@ -9,7 +9,7 @@ class CreateItems < ActiveRecord::Migration
       t.decimal :value, :null => false
       t.text :description
 
-      t.point :lonlat, :geographic => true
+      t.point :lonlat, :geographic => true, :null => false
       t.index :lonlat, :spatial => true
 
       t.references :user, :index => true, :null => false

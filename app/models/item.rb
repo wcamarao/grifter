@@ -2,22 +2,16 @@ require 'flickraw'
 
 class Item < ActiveRecord::Base
   MILES_TO_METERS_RATIO = 1609.34
-  before_create :set_default_status
+
+  belongs_to :user
+
+  before_validation :set_default_status
   before_update :delete_previous_picture
   before_destroy :delete_picture
   before_save :upload_picture
 
-  validates :name, :picture, presence: true
+  validates :name, :picture, :status, :location, :user_id, presence: true
   validates :value, numericality: { greater_than: 0 }
-
-  def self.seed
-    create({ location: 'San Francisco', lonlat: 'POINT (-122.420349 37.773592)' })
-    create({ location: 'Daly City', lonlat: 'POINT (-122.467041 37.685614)' })
-    create({ location: 'San Mateo', lonlat: 'POINT (-122.329712 37.562705)' })
-    create({ location: 'Palo Alto', lonlat: 'POINT (-122.14325 37.45178)' })
-    create({ location: 'Sunnyvale', lonlat: 'POINT (-122.032013 37.367787)' })
-    create({ location: 'San Jose', lonlat: 'POINT (-121.896057 37.336129)' })
-  end
 
   def self.within(miles)
     meters = miles * MILES_TO_METERS_RATIO
@@ -39,7 +33,7 @@ class Item < ActiveRecord::Base
   private
 
   def set_default_status
-    self.status = 'Active'
+    self.status = 'Active' if new_record?
   end
 
   def delete_previous_picture
@@ -72,6 +66,6 @@ class Item < ActiveRecord::Base
 
   def parse_picture(size)
     return unless picture.present?
-    JSON.parse(picture)[size]
+    JSON.parse(picture)[size] rescue nil
   end
 end
