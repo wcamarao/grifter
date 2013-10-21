@@ -9,15 +9,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>grifter.io</title>
+    <title>grifter</title>
 
+    <link href='//fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css' />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css" />
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="fixed">
+      <div class="contain-to-grid">
+        <nav class="top-bar">
+          <ul class="title-area">
+            <li class="name"><h1><a href="/">grifter</a></h1></li>
+            <li class="toggle-topbar menu-icon"><a href="javascript:void(0);"><span>MENU</span></a></li>
+          </ul>
+
+          <section class="top-bar-section">
+            <ul class="left">
+              <% if current_user %>
+                <li><%= link_to "Add an Item", new_item_path %></li>
+                <li><%= link_to "My Trades", trades_path %></li>
+                <li class="show-for-small"><%= link_to "Account Settings", edit_user_path(current_user) %></li>
+                <li class="show-for-small"><%= link_to "Sign out", signout_path %></li>
+              <% end %>
+            </ul>
+
+            <ul class="right">
+              <% if current_user %>
+                <li class="has-dropdown">
+                  <a href="javascript:void(0);" class="hide-for-small"><%= current_user.name %></a>
+                  <ul class="dropdown">
+                    <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
+                    <li><%= link_to "Sign out", signout_path %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <li><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>
+              <% end %>
+            </ul>
+
+          </section>
+        </nav>
+      </div>
+    </div>
+
+    <div id="content-container" class="row">
+      <div class="large-12 columns">
+        <%= yield %>
+      </div>
+    </div>
+
     <%= javascript_include_tag "application" %>
   </body>
 

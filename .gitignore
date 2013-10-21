@@ -1,5 +1,7 @@
 .DS_Store
 /.bundle
+/config/initializers/flickr.rb
+/config/initializers/omniauth.rb
 /log/*.log
 /tmp
 /vendor/assets/javascripts/lib/*

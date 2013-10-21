@@ -1,7 +1,7 @@
 grifter.io
 ==========
 
-In person trading app
+Personal Trading Marketplace
 
 ## Dependencies
 

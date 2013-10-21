@@ -1,9 +1,5 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @item.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<p>$ <%= @item.value %></p>
+<%= image_tag @item.picture_640 %>
+<p><%= @item.description %></p>

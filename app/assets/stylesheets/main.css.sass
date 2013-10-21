@@ -1,0 +1,79 @@
+@import 'foundation_settings'
+@import 'foundation/components/global'
+
+//
+// container
+//
+
+#content-container
+  background: white
+  margin-bottom: 50px
+  padding-bottom: 15px
+  padding-top: 45px
+
+//
+// nav
+//
+
+nav.top-bar
+  li.name
+    a
+      font-family: $logo-font-family
+      font-size: 135%
+      font-weight: normal
+
+  li a
+    font-weight: normal
+
+  li.has-dropdown ul li a
+    padding-bottom: 10px
+    padding-top: 10px
+
+nav.top-bar li.name h1 a:hover,
+nav.top-bar li:not(.has-dropdown):not(.toggle-topbar) > a:hover
+  @include fast-transition
+  background: darken($primary-color, 5%)
+
+//
+// errors
+//
+
+#errors
+  li
+    list-style: none
+
+//
+// item
+//
+
+#item_picture
+  display: none
+
+#item_picture_placeholder
+  cursor: pointer
+
+  &:hover
+    background: #f6f6f6
+
+#item_description
+  resize: vertical
+
+#item_location_preview
+  margin-bottom: 15px
+
+.item_name
+  display: inline-block
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  width: 100%
+
+//
+// responsive
+//
+
+@media only screen and (max-width: "#{$responsive-breakpoint - 13}px")
+  nav.top-bar
+    li.name h1 a
+      display: inline-block
+      width: auto
