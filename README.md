@@ -1,4 +1,4 @@
-grifter.io
+grifter.io [![Build Status](https://api.travis-ci.org/wcamarao/grifter.png)](http://travis-ci.org/wcamarao/grifter)
 ==========
 
 Personal Trading Marketplace
