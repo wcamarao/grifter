@@ -30,6 +30,8 @@ Personal Trading Marketplace
 #### Configuration
 
   * /config/database.yml
+  * /config/initializers/flickr.rb
+  * /config/initializers/omniauth.rb
 
 #### Setup
 
@@ -37,17 +39,24 @@ Personal Trading Marketplace
   * rake db:gis:setup
   * rake db:migrate
 
+## Verify PostGIS
+
+  * psql -h localhost
+
+Then
+
+  * SELECT POSTGIS_VERSION();
+
+If it fails, try manually installing
+
+  * CREATE EXTENSION postgis;
+
 #### Testing
 
   * guard
   * rake
   * rspec
 
-## Deploy
+#### Truncating
 
-  * psql -h localhost
-
-Then
-
-  * CREATE EXTENSION postgis;
-  * SELECT POSTGIS_VERSION();
+Before running `rake db:drop` you may want to run `Item.destroy_all` to save space on flickr by deleting the pictures related to the items being deleted.
