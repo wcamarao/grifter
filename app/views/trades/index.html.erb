@@ -1,4 +1,4 @@
-<h2>Nearby Items</h2>
+<h2>My Trades</h2>
 
 <ul class="large-block-grid-4">
   <% @items.each do |item| %>
@@ -9,8 +9,8 @@
       <% end %>
       <div class="item_footer">
         <small>
-          <strong>$ <%= item.value.round %> ~ </strong>
-          <%= item.location %>
+          <%= item.trades.count %> trades
+          <strong> ~ <%= item.pending_trades.count %> pending</strong>
         </small>
       </div>
     </li>

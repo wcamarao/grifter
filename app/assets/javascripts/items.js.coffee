@@ -41,5 +41,5 @@ $ ->
 
     $.get url, (response) ->
       location = parseLocation(response)
-      itemLocationPreview.text("Location: #{location}")
+      itemLocationPreview.html(itemLocationPreview.text() + " <strong>#{location}</strong>")
       itemLocation.val(location)

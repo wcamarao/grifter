@@ -18,6 +18,14 @@ class Item < ActiveRecord::Base
     Item.where("ST_Distance(lonlat, 'POINT(-122.420349 37.773592)') <= #{meters}")
   end
 
+  def trades
+    @trades ||= Trade.for_item(id)
+  end
+
+  def pending_trades
+    trades.select { |trade| trade.status == Trade::PENDING }
+  end
+
   def picture_320
     parse_picture('n')
   end

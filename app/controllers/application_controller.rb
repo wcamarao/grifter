@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= find_user_by_session_id if session[:user_id].present?
+    @current_user ||= find_user_by_session_id
   end
 
   def find_user_by_session_id
     begin
-      User.find(session[:user_id])
+      User.find(session[:user_id]) if session[:user_id].present?
     rescue ActiveRecord::RecordNotFound => e
       session.delete(:user_id)
       nil

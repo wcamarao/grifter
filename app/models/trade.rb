@@ -4,6 +4,14 @@ class Trade < ActiveRecord::Base
   REJECTED = 'REJECTED'
   COMPLETED = 'COMPLETED'
 
+  # WIP: change to named scope
+  def self.for_item(item_id)
+    arel = Trade.arel_table
+    source = arel[:source_item_id]
+    target = arel[:target_item_id]
+    Trade.where(source.eq(item_id).or(target.eq(item_id)))
+  end
+
   # 1 - Trade is proposed by source user, with initial status as PENDING
   #     Next: 2
 

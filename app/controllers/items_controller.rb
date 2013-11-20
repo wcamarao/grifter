@@ -7,7 +7,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @trade = Trade.new
+    @item_is_owned_by_current_user = current_user.try(:id) == @item.user.try(:id)
+    @trade = Trade.new unless @item_is_owned_by_current_user
   end
 
   def new
